@@ -132,7 +132,7 @@ npm run start
 
 ### todo
 
-- 补充 d.ts
+- ~~补充 d.ts~~
 - 用原生 TypeScript 实现
 - 兼容 error ，warn 等 level，支持打印复杂对象
 - 单元测试
