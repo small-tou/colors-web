@@ -6,7 +6,8 @@
 目前还在开发更多功能中，有意见和想法请提 issues（格式无要求）
 
 效果：
-![](http://assets.html-js.com/demo.png)
+
+<image src="http://assets.html-js.com/demo.png" width=400 style="border:1px solid #ddd;"/>
 
 ### 安装
 
