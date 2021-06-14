@@ -1,5 +1,7 @@
 ## colors-web
 
+<image src="https://user-images.githubusercontent.com/897401/121878985-ea72f180-cd3e-11eb-8e60-bc659fef33ce.png" width=400 />
+
 一个自由度非常高的，在浏览器的控制台（Console）显示彩色文本的库，您可用以下方式显示。
 目前还在开发更多功能中，有意见和想法请提 issues（格式无要求）
 
