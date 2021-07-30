@@ -1,11 +1,11 @@
 import { logger, colors } from "../src/index.js";
-
 const log = window.console.log;
 logger.source = log;
 logger(
   colors().red.greenBg.log("hello"),
   "world",
-  colors().green("芋头").fontsize(24)
+  colors().green("芋头").fontsize(24),
+  colors().color("#ff6700").log("dddd").fontsize(24)
 );
 logger(
   colors().red().snow().greenBg().log("hello"),

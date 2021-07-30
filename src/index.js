@@ -12,7 +12,7 @@ export const logger = (...args) => {
       strings.push("%c" + result.o);
       styles.push(result.style);
     } else {
-      strings.push(arg);
+      strings.push(String(arg));
     }
   });
   logger.source(strings.join(""), ...styles);

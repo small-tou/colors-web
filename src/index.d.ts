@@ -312,7 +312,7 @@ export interface Colors extends ColorsBase {
   bold: () => Colors;
 }
 
-export const colors: () => Colors;
+export const colors: (() => Colors) & Colors;
 
 export const logger: ((...args: (Colors | string)[]) => void) & {
   source: any;

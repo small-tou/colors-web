@@ -10,9 +10,19 @@ const plugins = [
       NODE_ENV: JSON.stringify(nodeEnv),
     },
   }),
+
   new HtmlWebpackPlugin({
-    title: "Typescript Webpack Starter",
+    chunks: ["app"], // 这个名字，就是入口定义的名字
+    filename: "index.html",
+    hash: true,
     template: "!!ejs-loader!example/index.html",
+  }),
+
+  new HtmlWebpackPlugin({
+    chunks: ["camera"],
+    filename: "camera.html",
+    hash: true,
+    template: "!!ejs-loader!example/camera.html",
   }),
   new webpack.LoaderOptionsPlugin({
     options: {
@@ -29,6 +39,7 @@ var config = {
   context: path.resolve("./example"),
   entry: {
     app: "./index.ts",
+    camera: "./camera.js",
   },
   output: {
     path: path.resolve("./dist"),
