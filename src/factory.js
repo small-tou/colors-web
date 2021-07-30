@@ -63,10 +63,14 @@ const ColorsFactory = {
         return this;
       },
       result() {
-        return {
+        console.log(this.o, this.styles);
+        const result = {
           o: this.o,
           style: this.styles.join(""),
         };
+        this.o = "";
+        this.styles = [];
+        return result;
       },
     });
 
