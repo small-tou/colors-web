@@ -300,9 +300,9 @@ type ColorsBase = {
 export interface Colors extends ColorsBase {
   color: (color: string) => Colors;
   bg: (color: string) => Colors;
-
+  bgSize: (size: string) => Colors;
   log: (o: string) => Colors;
-
+  style: (o: string) => Colors;
   padding: (a: number, b?: number) => Colors;
   fontsize: (size: number) => Colors;
   fontfamily: (family: string) => Colors;

@@ -23,7 +23,11 @@ const ColorsFactory = {
         return this;
       },
       bg(color) {
-        this.styles.push(`background:${color};`);
+        this.styles.push(`background:${color};background-repeat:no-repeat;`);
+        return this;
+      },
+      bgSize(size) {
+        this.styles.push(`background-size:${size};`);
         return this;
       },
       fontsize(size) {
@@ -55,6 +59,10 @@ const ColorsFactory = {
       linethrough(o) {
         this.styles.push(`text-decoration:line-through;`);
         if (o) this.o = o;
+        return this;
+      },
+      style(cssText) {
+        this.styles.push(cssText);
         return this;
       },
       italic(o) {

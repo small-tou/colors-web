@@ -24,6 +24,18 @@ const plugins = [
     hash: true,
     template: "!!ejs-loader!example/camera.html",
   }),
+  new HtmlWebpackPlugin({
+    chunks: ["audio"],
+    filename: "audio.html",
+    hash: true,
+    template: "!!ejs-loader!example/audio.html",
+  }),
+  new HtmlWebpackPlugin({
+    chunks: ["game"],
+    filename: "game.html",
+    hash: true,
+    template: "!!ejs-loader!example/game.html",
+  }),
   new webpack.LoaderOptionsPlugin({
     options: {
       tslint: {
@@ -39,7 +51,9 @@ var config = {
   context: path.resolve("./example"),
   entry: {
     app: "./index.ts",
-    camera: "./camera.js",
+    camera: "./camera.ts",
+    audio: "./audio.ts",
+    game: "./game.ts",
   },
   output: {
     path: path.resolve("./dist"),
@@ -47,22 +61,17 @@ var config = {
   },
   module: {
     rules: [
+      //   {
+      //     enforce: "pre",
+      //     test: /\.tsx?$/,
+      //     exclude: [/\/node_modules\//],
+      //     use: ["awesome-typescript-loader", "source-map-loader"],
+      //   },
       {
-        enforce: "pre",
-        test: /\.tsx?$/,
-        exclude: [/\/node_modules\//],
-        use: ["awesome-typescript-loader", "source-map-loader"],
+        test: /\.(ts|tsx)?$/,
+        use: [{ loader: "ts-loader", options: { transpileOnly: true } }],
       },
-      !isProd
-        ? {
-            test: /\.(js|ts)$/,
-            loader: "istanbul-instrumenter-loader",
-            exclude: [/\/node_modules\//],
-            query: {
-              esModules: true,
-            },
-          }
-        : null,
+
       { test: /\.html$/, loader: "html-loader" },
       { test: /\.css$/, loaders: ["style-loader", "css-loader"] },
     ].filter(Boolean),

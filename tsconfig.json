@@ -1,21 +1,26 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "strict": true,
+    "target": "es6",
+    "module": "es6",
+    "strict": false,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
     "experimentalDecorators": true,
+    "allowJs": true,
     "skipLibCheck": true,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "useDefineForClassFields": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "types": ["webpack-env"],
     "paths": {
       "@/*": ["src/*"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost", "ES2015.Promise"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  "include": ["example/**/*.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }
