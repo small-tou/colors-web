@@ -11,6 +11,8 @@
 
 使用此库实现了一个在 console 里播放视频的功能，demo 地址：https://yu-tou.github.io/colors-web/dist/camera.html
 
+在 console 里显示音频频谱的功能，demo 地址：https://yu-tou.github.io/colors-web/dist/audio.html
+
 效果：
 
 <image src="http://assets.html-js.com/demo.png" width=400 style="border:1px solid #ddd;"/>
@@ -67,27 +69,15 @@ logger.source = console.log;
 /**
  * 使用属性的方式链式调用
  */
-logger(
-  colors().red.greenBg.log("hello world"),
-  "hello world",
-  colors().green.log("芋头")
-);
+logger(colors().red.greenBg.log("hello world"), "hello world", colors().green.log("芋头"));
 /**
  * 直接用列表中的颜色做方法调用
  */
-logger(
-  colors().red().greenBg().log("hello world"),
-  "hello world",
-  colors().green("芋头")
-);
+logger(colors().red().greenBg().log("hello world"), "hello world", colors().green("芋头"));
 /**
  * 自定义颜色和北京
  */
-logger(
-  colors().color("red").bg("lightgrey").log("hello world"),
-  "hello world",
-  colors().green("芋头")
-);
+logger(colors().color("red").bg("lightgrey").log("hello world"), "hello world", colors().green("芋头"));
 /**
  * 除了颜色和背景色之外，支持其他 style，如 bold，italic，underline 等
  */
