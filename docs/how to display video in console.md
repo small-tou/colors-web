@@ -11,7 +11,7 @@
 
 ### 效果
 
-![https://assets.html-js.com/uploads/1632982367557-a9d13d93a417ab6d2d64c6f884734a53.gif]()
+![效果录屏](https://assets.html-js.com/uploads/1632982367557-a9d13d93a417ab6d2d64c6f884734a53.gif)
 
 测试地址：https://yu-tou.github.io/colors-web/dist/camera.html
 
