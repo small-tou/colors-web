@@ -65,6 +65,9 @@
   "license": "ISC",
   "main": "src/index.js",
   "name": "colors-web",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "build": "npm run build:prod",
     "build:dev": "webpack --mode development --config ./webpack.config.js --progress --color --display-error-details",
@@ -76,7 +79,7 @@
     "start": "npm run server:dev",
     "test": "karma start"
   },
-  "version": "0.0.8",
+  "version": "0.1.1",
   "dependencies": {
     "@types/webpack-env": "^1.16.2"
   }

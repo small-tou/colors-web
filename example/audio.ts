@@ -3,9 +3,11 @@ import TMatrix from "./text-matrix";
 const log = window.console.log;
 logger.source = log;
 let renderCount = 0;
-export const render = function (matrix: TMatrix) {
+const container = document.createElement("div");
+document.body.appendChild(container);
+const render = function (matrix: TMatrix) {
   renderCount++;
-  if (renderCount % 20 == 0) {
+  if (renderCount % 50 == 0) {
     console.clear();
   }
   const arr = matrix.toColorObjects();
@@ -29,49 +31,56 @@ btn.onclick = function () {
 };
 
 const run = async function () {
-  //   const mediaStream = await navigator.mediaDevices.getUserMedia({
-  //     video: true,
-  //     audio: true,
-  //   });
   var video = document.createElement("video");
   video.src = "music.mp3";
   document.body.appendChild(video);
   const audioContext = new AudioContext();
   var fen = audioContext.createAnalyser();
   var src = audioContext.createMediaElementSource(video);
+  fen.fftSize = 2048;
+
   const row = 13;
-  const col = 40;
+  const col = 32;
   const matrix = new TMatrix(row, col);
-  //   fen.fftSize = 100;
+  const bufferLength = fen.frequencyBinCount;
+  let dataArray = new Uint8Array(bufferLength);
   function snapshot() {
-    var Data = new Uint8Array(fen.frequencyBinCount);
-    const bufferLength = (fen.frequencyBinCount * 2) / 3; // 只取前三分之二，极高频去掉
-    fen.getByteFrequencyData(Data);
+    fen.getByteFrequencyData(dataArray);
     let count = 0;
-    for (var i = 0; i < bufferLength; i += Math.floor(bufferLength / col)) {
-      const barHeight = Data[i];
-      const str = Array(Math.floor(barHeight / 20))
-        .fill("▩")
-        .join("")
-        .padStart(row, "□");
+    matrix.fillWithChar("▩");
+    const step = bufferLength / col;
+    for (var i = 0; i < col; i++) {
+      const v = dataArray[i];
+      let avg = 0;
+      // 平均取样
+      for (let ii = 0; ii < step; ii++) {
+        avg += dataArray[i * step + ii];
+      }
+      avg = avg / step;
+      // 比例映射
+      var barHeight = Math.floor((row * avg) / 255);
+      if (barHeight < 0) barHeight = 0;
+      if (barHeight > row) barHeight = row;
+      // 填充字符
+      const str = Array(barHeight).fill("▩").join("").padStart(row, "□");
+      // 计算颜色
       const rgb = [Math.floor(count * 5), Math.floor(255 - count * 5), 255];
+      // 设置到矩阵
       matrix.setCol(
         count,
         str.split("").map((code, index) => {
           const color = `rgb(${rgb[0]},${rgb[1]},${rgb[2]})`;
-          return (
-            colors()
-              .color(code == "▩" ? color : `rgba(${rgb[0]},${rgb[1]},${rgb[2]},${index / 35})`)
-              .padding(2, 2)
-              .fontsize(12)
-              //   .bg("#eee")
-              .fontfamily(/Chrome/.test(navigator.userAgent) ? "" : "")
-              .log("▣")
-          );
+          return colors()
+            .color(code == "▩" ? color : `rgba(0,0,0,0.1)`)
+            .padding(2, 2)
+            .fontsize(12)
+            .fontfamily(/Chrome/.test(navigator.userAgent) ? "" : "")
+            .log("▣");
         })
       );
       count++;
     }
+    // 渲染一帧
     render(matrix);
   }
   src.connect(fen);
@@ -81,7 +90,4 @@ const run = async function () {
   setInterval(() => {
     snapshot();
   }, 100);
-  //   video.srcObject = mediaStream;
 };
-
-// run();
