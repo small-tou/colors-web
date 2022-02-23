@@ -9,9 +9,9 @@
 
 <image src="http://assets.html-js.com/demo.png" width=400 style="border:1px solid #ddd;"/>
 
-使用此库实现了一个在 console 里播放视频的功能，demo 地址：https://yu-tou.github.io/colors-web/dist/camera.html
+使用此库实现了一个在 console 里播放视频的功能，demo 地址：https://colors-web.js.org/dist/camera.html
 
-在 console 里显示音频频谱的功能，demo 地址：https://yu-tou.github.io/colors-web/dist/audio.html
+在 console 里显示音频频谱的功能，demo 地址：https://colors-web.js.org/dist/audio.html
 
 效果：
 
